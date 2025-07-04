@@ -64,6 +64,26 @@ def load_chemical_data():
 df = load_chemical_data()
 st.title("Analysis of Fruit Chemical Composition")
 
+st.markdown("""
+## Interactive ML Platform for Apricot Fruit Chemistry
+
+**Purpose:** Developed to accompany the research article  
+*“Comprehensive Analysis of the Chemical Composition of Apricot Fruits Using Synthetic Data Generation and Machine Learning Methods.”*
+
+**Patent:** Registered with Rospatent (Reg. No. 2025661422, May 6, 2025)
+
+---
+
+### Method Overview
+- **Synthetic Data Generation** Structured mean shifts + Gaussian noise to augment limited datasets  
+- **Correlation Analysis** Pearson correlations reveal linear dependencies  
+- **ANOVA** One-way tests for cultivar differences  
+- **Random Forest Regression** Predicts dry matter content (R² metric)  
+- **SHAP Analysis** Shapley values explain feature contributions  
+- **Multiple Factor Analysis (MFA)** Visualizes multivariate clustering  
+""")
+
+
 # --- Parameters for generating synthetic data ---
 st.sidebar.header("Synthetic Data Generation Parameters")
 num_synthetic = st.sidebar.slider(
@@ -88,6 +108,12 @@ variety_shift = st.sidebar.slider(
     step=0.5,
     help="A systematic random shift to enhance differences between varieties."
 )
+with st.sidebar.expander("Authors", expanded=False):
+    st.markdown("- **Nadezhda I. Gallini** — [GitHub](https://github.com/NadiaGallini2) · [Email](mailto:your.email@example.com)")
+    st.markdown("- **Anatoly N. Kazak**")
+    st.markdown("- **Viktor I. Gallini**")
+    st.markdown("- **Vadim V. Korzin**")
+    st.markdown("- **Yuri V. Grishin**")
 
 # --- Generate synthetic data ---
 numeric_cols = df.select_dtypes(include=np.number).columns
@@ -235,4 +261,14 @@ st.pyplot(fig)
 mfa_filename = os.path.join(plots_dir, "mfa_analysis.png")
 fig.savefig(mfa_filename, format='png', dpi=150)
 plt.close(fig)
+
+st.markdown("---")
+# st.markdown("### Authors")
+# st.markdown("""
+# - **Nadezhda I. Gallini** — [GitHub](https://github.com/NadiaGallini2) · [Email](mailto:gallini.nadi@yandex.ru)  
+# - **Anatoly N. Kazak**  
+# - **Viktor I. Gallini**  
+# - **Vadim V. Korzin**  
+# - **Yuri V. Grishin**
+# """)
 
